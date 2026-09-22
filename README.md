@@ -4,9 +4,9 @@ A web-based platform that allows job seekers and recruiters to connect. The Syst
 ## Technologies
 
 - **Front end:** React, CSS, HTML, TypeScript
-- **Back end:** Node, Express, TypeScript
+- **Back end:** Python, FastAPI
 - **Database:** PostgreSQL
-- **Database tools:** Prisma, Prisma Studio
+- **Database tools:** SQLAlchemy (ORM), Alembic (migrations)
 - **Version Control:** GitHub
 
 ## Team
