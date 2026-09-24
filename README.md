@@ -12,7 +12,7 @@ A web-based platform that allows job seekers and recruiters to connect. The Syst
 ## Team
 
 - **Sayf** — Lead, Database Backend 
-- **Lamees** - Backend - API/Debugger
+- **Lamees** - General Backend Developer
 - **Dany** — Frontend Developer
 - **Youssef** - General Backend Developer 
-- **Krish** - Frontend Developer
+- **Krish** - Frontend Developer/Database
