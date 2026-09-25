@@ -15,7 +15,7 @@ A web-based platform that allows job seekers and recruiters to connect. The Syst
 - **Lamees** - General Backend Developer
 - **Dany** — Frontend Developer
 - **Youssef** - General Backend Developer 
-- **Krish** - Frontend Developer/Database
+- **Krish** - Frontend Developer
 - **Kaila** - Database Backend
 
 ## Set up
