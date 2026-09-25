@@ -42,7 +42,7 @@ A web-based platform that allows job seekers and recruiters to connect. The Syst
 
 **Step 4: install all dependencies**
  - Once inside (.venv) run this to install all dependencies:
-   ```bash
+```bash
   pip install -r requirements.txt
   ```
 
