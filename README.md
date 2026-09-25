@@ -20,22 +20,31 @@ A web-based platform that allows job seekers and recruiters to connect. The Syst
 
 ## Set up
 **Step 1: clone and pull the latest code**
-- Ensure you're on the Main branch by running this on the termin and have the latest update by running:
- "git pull origin main"
- "git checkout main"
+- Ensure you're on the Main branch by running this on the terminal and have the latest update by running:
+ ```bash
+  git checkout main
+  git pull origin main
+  ```
 
 **Step 2: Create a virtual environment**
 - Run this on your terminal:
-  "python3 -m venv .venv"
+  ```bash
+  python3 -m venv .venv
+  ```
 
 **Step 3: Activate virtual Environment**
 - Ensure you're inside the (.venv) by running this on your terminal: (afterwards you should see  "(.venv)" at the beginning of the line)
-  "source .venv/bin/activate"
+  ```bash
+  source .venv/bin/activate
+  ```
+
 
 
 **Step 4: install all dependencies**
  - Once inside (.venv) run this to install all dependencies:
-   "pip install -r requirements.txt" 
+   ```bash
+  pip install -r requirements.txt
+  ```
 
 **Step 5: Connecting to the database**
 
