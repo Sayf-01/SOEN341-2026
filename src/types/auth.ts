@@ -1,32 +1,41 @@
-export type UserRole = "job_seeker" | "recruiter";
+// src/types/auth.ts
 
-export interface User {
-  id: string;
-  full_name: string;
-  email: string;
-  role: UserRole;
-  is_active?: boolean;
-  created_at?: string;
+export type UserRole = "JOB_SEEKER" | "RECRUITER";
+
+export interface RegisterRequest {
+ fullName: string;
+ email: string;
+ password: string;
+ role: UserRole;
 }
 
-export interface RegisterPayload {
-  full_name: string;
-  email: string;
-  password: string;
-  role: UserRole;
+export interface RegisterResponse {
+ message: string;
+ user?: {
+ id: string;
+ full_name?: string;
+ email: string;
+ role: UserRole;
+ };
 }
 
-export interface LoginPayload {
-  email: string;
-  password: string;
+export interface LoginRequest {
+ email: string;
+ password: string;
 }
 
 export interface LoginResponse {
-  access_token: string;
-  token_type: "bearer";
-  user: User;
+ access_token: string;
+ token_type: "bearer";
+ user?: {
+ id: string;
+ email: string;
+ role: UserRole;
+ };
 }
 
-export interface ApiErrorResponse {
-  detail: string;
+export interface ApiErrorDetail {
+ detail?: string;
+ message?: string;
+ error?: string;
 }
