@@ -17,7 +17,8 @@ import Alert from "../components/Alert";
 import Loader from "../components/Loader";
 // (Stage D): the API service + the translator for the backend's error replies
 import { authService, getAuthErrorMessage } from "../services/authService";
-
+// (Stage E): the guest book
+import { useAuth } from "../context/useAuth";
 // (Stage B): the shape of the memory
 // interface = blank template ---> one slot for email, one for password, both text
 interface LoginForm {
@@ -45,6 +46,10 @@ const EMAIL_REGEX = new RegExp("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
 function LoginPage() {
   // (Stage D): navigate("/somewhere") = go to that page
   const navigate = useNavigate();
+
+  
+  // (Stage E): login() = write the user into the guest book
+  const { login } = useAuth();
 
   // (Stage B): the memory (the state)
   // form = what's remembered right now (read)
@@ -132,9 +137,8 @@ function LoginPage() {
         password: form.password,
       });
 
-      // save the token where Krish's ProtectedRoute looks for it
-      // ⚠ temporary ---> AuthContext (next step) takes this job over
-      localStorage.setItem("access_token", response.access_token);
+           // (Stage E): write them into the guest book (it saves the token + user)
+      login(response.access_token, response.user);
 
       // into the dashboard
       navigate("/dashboard");
