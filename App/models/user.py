@@ -1,7 +1,12 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, Enum
 from datetime import datetime, timezone
+import enum
 from App.database.base import Base
 
+class UserRole(str, enum.Enum):
+    JOB_SEEKER = "job_seeker"
+    RECRUITER = "recruiter"
+    
 # "Base" is basically the interface that allows python to manipulate the database. It is the base class that all models will inherit from. 
 class User(Base):
     """
@@ -19,6 +24,9 @@ class User(Base):
     
     # Secure login detail (this will be stored as a HASHED password, never plaintext)
     hashed_password = Column(String(255), nullable=False)
+    
+    # Role of users (Job seeker or Recruiter) 
+    role = Column(Enum(UserRole), nullable=False, default=UserRole.JOB_SEEKER)
     
     # Audit trail (tracks when the user registered)
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
