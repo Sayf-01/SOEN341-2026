@@ -1,5 +1,16 @@
-<<<<<<< HEAD
-# Logs
+# Python / backend
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.db
+
+# Node / frontend
+node_modules
+dist
+dist-ssr
+*.local
 logs
 *.log
 npm-debug.log*
@@ -8,12 +19,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
+# Editor files
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -23,11 +29,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-
-# Local environment variables
-.env
-=======
-.env
-.venv/
->>>>>>> ad461b0f3cd51b068fa16374df7b4b9f2328f665
