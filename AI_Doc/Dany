@@ -25,8 +25,7 @@ Reflection:
 This saved time getting up to speed on a codebase I hadn't worked in yet. The repository check was
 useful because it showed the actual state of the code rather than what the planning documents
 assumed.
-Responsible Person:
-Dany Abou Saleh
+
 
 
 AI Usage Log Entry 2
@@ -57,73 +56,37 @@ Accepted. The commands solved each issue.
 Reflection:
 I learned the difference between saving a file, committing it and pushing it, and why the first push needs
 -u origin <branch> so it does not push to the branch I started from.
-Responsible Person:
-Dany Abou Saleh
 
 
 
 AI Usage Log Entry 3
 Task ID/Title:
-Implement Login Page (Form, Validation, Loading and Error Handling)
+Prepare Pull Request and Coordinate Merge Order
 Purpose of AI Use:
-Code generation and learning React. AI was used to build the LoginPage step by step while explaining
-each concept (JSX, useState, controlled inputs, form validation, async/await, try/catch), and to add a
-login function to authService with a mock response until the backend endpoint exists.
+Documentation and team coordination. AI was used to draft the PR description and a message to Krish,
+and to check our plan for merging both frontend PRs.
 
-Prompt: "Let's build the login page step by step using Krish's components. First the layout, then storing
-the input, then validation, then calling the API with a loading state."
-AI Response: The AI generated the LoginPage code in four stages (layout, state, validation, API call
-with loading and error states) with explanatory comments, and added authService.login() plus a mock
-login controlled by VITE_USE_MOCK_AUTH in .env so the page could be tested without a backend.
+Prompt: "Krish sent this plan for merging both PRs. Should we follow it? Also help me write the PR
+description."
+
+AI Response: The AI agreed with the sequential merge plan, pointed out that my branch is built on
+Krish's registration branch so his PR must be merged first, suggested setting my PR's base branch to
+feature/registration-ui so reviewers only see my commits, and listed items to check when reviewing
+Krish's PR. It drafted the PR description and a message to Krish.
+
 AI-Suggested Content:
-• LoginPage.tsx: email/password form using FormField, Input, Button, Alert and Loader.
-• Validation: required fields and email format (same regex as the registration page).
-• Loading state (disabled inputs, 'Logging in...') and backend error shown in an Alert.
-• authService.login() calling POST /api/auth/login, with a mock for local testing.
+• PR description: what changed, how to test with the mock, open questions, dependency on Krish's
+PR.
+• Base branch feature/registration-ui until Krish's PR is merged, then switch to main.
+• Review notes for Krish's PR (README replaced, LICENSE deleted, stray ~ in index.html).
+
 Validation:
-I tested every case in the browser: empty fields, invalid email, wrong password (error alert) and correct
-mock password (redirect to /dashboard). I ran npm run build to check for TypeScript errors. While
-typing the code myself I introduced a JSX nesting error (FormField closed too early), which I fixed after
-the AI pointed to the cause.
+The PR description was compared with the actual commits in the branch, and the merge plan was
+discussed with Krish before applying it.
 Decision:
-Modified before use. I rewrote the comments in my own words, changed placeholder text, and removed
-metaphor-based comments to keep the code professional. The login endpoint is marked as not yet
-confirmed with the backend team.
+Modified before use. I adjusted the wording and branch name to match what we agreed on.
 Reflection:
-Building the page in stages helped me understand how state, validation and API calls fit together in
-React instead of pasting one big file. The mock let me test the full flow before the backend was ready,
-but it must be switched off once the real endpoint exists.
-Responsible Person:
-Dany Abou Saleh
+Writing a clear PR description with test steps makes review faster for my teammate. Understanding
+branch dependencies avoided a confusing PR that would have included Krish's changes.
 
-
-AI Usage Log Entry 4
-Task ID/Title:
-Add AuthContext, Protected Route and Logout
-Purpose of AI Use:
-Code generation. AI was used to implement shared authentication state so the login page,
-ProtectedRoute and Navbar all use one source of truth for the logged-in user.
-
-Prompt: "Now let's do AuthContext so ProtectedRoute and the navbar know who is logged in, and add
-logout."
-AI Response: The AI generated an AuthProvider (stores the token and user, persists them in
-localStorage so a refresh keeps the session), a useAuth hook, and updates to App.tsx, ProtectedRoute
-and Navbar (email, Dashboard and Logout when logged in). It split the context into separate files to
-satisfy the project's ESLint react-refresh rule.
-AI-Suggested Content:
-• src/context/AuthContext.tsx, authState.ts and useAuth.ts.
-• App wrapped in AuthProvider; ProtectedRoute and Navbar read useAuth().
-• LoginPage calls login(token, user) instead of writing to localStorage directly.
-Validation:
-Tested in the browser: /dashboard redirects to /login when logged out, login shows my email and
-Logout in the navbar, refreshing keeps me logged in, and Logout returns to /login and locks the
-dashboard. npm run build passed.
-Decision:
-Modified before use. Comments were rewritten without metaphors. I informed Krish because the
-change touches his Navbar, ProtectedRoute and App files.
-Reflection:
-I now understand why a Context is better than every component reading localStorage on its own: logout
-and future changes to token storage happen in one place. Storing the token in localStorage is a
-decision the team should still review for security.
-Responsible Person:
 Dany Abou Saleh
