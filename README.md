@@ -54,10 +54,11 @@ A web-based platform that allows job seekers and recruiters to connect. The Syst
 ## Run Steps:
  - We'll require two terminals to run the website. First on the terminal we run the Backend server:
    ```bash
-  uvicorn App.main:app --reload
+    uvicorn App.main:app --reload
   ```
+
  - For the Front-End run:
-```bash
-  npm install
-  npm run dev
-  ```
+  ```bash
+    npm install
+    npm run dev
+    ```
