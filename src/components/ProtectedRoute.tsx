@@ -1,14 +1,16 @@
 import type { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
+// (Stage E): ask the guest book instead of reading localStorage directly
+import { useAuth } from "../context/useAuth";
 
 interface ProtectedRouteProps {
   children: ReactNode;
 }
 
 function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const token = localStorage.getItem("access_token");
+  const { isAuthenticated } = useAuth();
 
-  if (!token) {
+  if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
 
