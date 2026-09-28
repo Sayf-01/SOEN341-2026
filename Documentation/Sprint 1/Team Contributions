@@ -1,0 +1,34 @@
+Sayf
+- Set up and initialized the Neon (PostgreSQL) database and connected it to the backend through a .env configuration file.
+- Created the SQLAlchemy Base class and began the initial User schema.
+- Established the backend project structure and created the requirements.txt file.
+- Initialized the GitHub repository, wrote the README, and created the folder structure for AI documentation.
+- Set up the "CareerNet Board" project and the meeting minutes, entered all user stories, and built a labeling system that separates tasks by sprint.
+- Authored the Sprint 1 plan document.
+
+Kaila
+- Updated the database use information table.
+- Completed Appendix A (Sprint 1 Work Plan), covering all Sprint 1 issues with assignees, priorities, and statuses.
+- Completed the team contribution documentation.
+- Fixed the Windows installation failure caused by the Unix-only uvloop dependency by adding a platform marker to requirements.txt, submitted as a pull request.
+- Added a role column (Job Seeker or Recruiter) to the User model to support the registration flow.
+
+Dany
+- Designed and built the login user interface, the screen where Job Seekers enter their credentials to access their accounts.
+- Connected the login form to the backend so that submitted credentials are sent to the login endpoint and the result is handled on screen.
+- Worked with the team on the Job Seeker registration and login features, helping keep the frontend flow consistent from sign-up through sign-in.
+
+Youssef
+- Developed the backend login endpoint, which receives a user's credentials, checks them against the stored account information, and returns the outcome to the frontend.
+- Handled the server-side logic that decides whether a login attempt succeeds, so that only registered users can access their accounts.
+- Collaborated with the team on the Job Seeker login feature, coordinating with the frontend so the login form and endpoint worked together.
+
+Krish
+- Designed and built the registration user interface, the sign-up form where new users create an account and choose whether they are a Job Seeker or a Recruiter.
+- Defined the request and response format used by the registration form (full name, email, password, and role, along with the expected success and error responses) and shared it with the backend team so the two sides could integrate without guesswork.
+- Completed the registration interface ahead of the rest of Sprint 1, which gave the backend team a clear specification to build against.
+
+Lamees
+- Developed the backend registration endpoint, which receives new account details from the sign-up form and creates the user in the database.
+- Implemented the server-side handling of registration requests, including responding to the frontend with a success message or an appropriate error.
+- Worked with the team on the Job Seeker registration feature, coordinating with the frontend and database work so the full sign-up flow functioned end to end.
