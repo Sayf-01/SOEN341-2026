@@ -7,6 +7,7 @@ import App.models  # noqa: F401  (registers all tables)
 from App.core import config
 from App.database.base import Base
 from App.database.connection import engine
+from App.routers import auth
 
 # TEMPORARY: creates missing tables on startup. Remove once Sayf/Kaila's Alembic migration exists.
 Base.metadata.create_all(bind=engine)
@@ -40,3 +41,5 @@ async def unhandled_exception_handler(request: Request, exc: Exception):
 @app.get("/api/v1/health", tags=["health"])
 def health():
     return {"status": "ok"}
+
+app.include_router(auth.router, prefix="/api/v1")
