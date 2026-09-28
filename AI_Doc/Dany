@@ -1,0 +1,129 @@
+AI Usage Log Entry 1
+Task ID/Title: Understand Sprint 1 Requirements and Current Repository State
+Purpose of AI Use:
+Research and onboarding. AI was used to summarize the Sprint 1 assignment, the frontend task distribution and the Feature 1 plan, and to check what had already been built in the team repository
+(branches, existing frontend files) so I knew where my login work would fit.
+
+Prompt: "Here are the Sprint 1 assignment, our frontend task distribution and the Feature 1 plan.
+Summarize what we have to do and what my part is (Dany, frontend). Here is our GitHub repo: what
+already exists and how do I pull it to work on my own?"
+AI Response: The AI summarized the Sprint 1 deliverables and my frontend tasks (login page,
+AuthContext, protected route, Feature 2). It inspected the repository and reported that the frontend only
+existed on Krish's feature branches (not on main), that LoginPage was a placeholder and
+AuthContext.tsx was empty, and it flagged possible issues to discuss with the team (frontend/backend
+user model mismatch, unconfirmed login endpoint).
+AI-Suggested Content:
+• Summary of Sprint 1 grading items and my responsibilities.
+• Recommendation to branch off feature/registration-ui since main had no frontend yet.
+• List of questions for the backend team (login endpoint, response shape, User model fields).
+Validation:
+I checked the summary against the original assignment PDF and task distribution document, and
+confirmed the repository state myself on GitHub (branches and files).
+Decision:
+Accepted. Used as a reference to plan my work and questions for the team.
+Reflection:
+This saved time getting up to speed on a codebase I hadn't worked in yet. The repository check was
+useful because it showed the actual state of the code rather than what the planning documents
+assumed.
+Responsible Person:
+Dany Abou Saleh
+
+
+AI Usage Log Entry 2
+Task ID/Title: Git and PowerShell Setup and Troubleshooting
+Purpose of AI Use:
+Debugging and development environment setup. AI was used to fix errors while cloning the repository,
+running the dev server and pushing my branch.
+
+Prompt: "git clone gives 'fatal: could not create work tree dir: Permission denied' in PowerShell." / "My
+changes show in VS Code but the browser still runs the old code." / "git push says 'Everything
+up-to-date' but my new files aren't on GitHub."
+AI Response: The AI explained that the terminal was opened in C:\Windows\system32 (a protected
+folder) and to clone into a folder in my user directory instead. It suggested checking the file on disk with
+Select-String to confirm unsaved changes, and explained that git push only sends commits, so the
+changes had to be staged and committed first. It also explained renaming the branch and setting the
+upstream on the first push.
+AI-Suggested Content:
+cd ~ ; mkdir Projects ; cd Projects ; git clone <repo-url>
+Select-String -Path src\pages\LoginPage.tsx -Pattern "Logging in"
+git branch -m feature/login-ui
+git push -u origin feature/login-ui
+git status, then git add / git commit before git push
+Validation:
+Each command was run in PowerShell and the result was checked (repo cloned, file contents
+confirmed on disk, branch visible on GitHub with the expected commits).
+Decision:
+Accepted. The commands solved each issue.
+Reflection:
+I learned the difference between saving a file, committing it and pushing it, and why the first push needs
+-u origin <branch> so it does not push to the branch I started from.
+Responsible Person:
+Dany Abou Saleh
+
+
+
+AI Usage Log Entry 3
+Task ID/Title:
+Implement Login Page (Form, Validation, Loading and Error Handling)
+Purpose of AI Use:
+Code generation and learning React. AI was used to build the LoginPage step by step while explaining
+each concept (JSX, useState, controlled inputs, form validation, async/await, try/catch), and to add a
+login function to authService with a mock response until the backend endpoint exists.
+
+Prompt: "Let's build the login page step by step using Krish's components. First the layout, then storing
+the input, then validation, then calling the API with a loading state."
+AI Response: The AI generated the LoginPage code in four stages (layout, state, validation, API call
+with loading and error states) with explanatory comments, and added authService.login() plus a mock
+login controlled by VITE_USE_MOCK_AUTH in .env so the page could be tested without a backend.
+AI-Suggested Content:
+• LoginPage.tsx: email/password form using FormField, Input, Button, Alert and Loader.
+• Validation: required fields and email format (same regex as the registration page).
+• Loading state (disabled inputs, 'Logging in...') and backend error shown in an Alert.
+• authService.login() calling POST /api/auth/login, with a mock for local testing.
+Validation:
+I tested every case in the browser: empty fields, invalid email, wrong password (error alert) and correct
+mock password (redirect to /dashboard). I ran npm run build to check for TypeScript errors. While
+typing the code myself I introduced a JSX nesting error (FormField closed too early), which I fixed after
+the AI pointed to the cause.
+Decision:
+Modified before use. I rewrote the comments in my own words, changed placeholder text, and removed
+metaphor-based comments to keep the code professional. The login endpoint is marked as not yet
+confirmed with the backend team.
+Reflection:
+Building the page in stages helped me understand how state, validation and API calls fit together in
+React instead of pasting one big file. The mock let me test the full flow before the backend was ready,
+but it must be switched off once the real endpoint exists.
+Responsible Person:
+Dany Abou Saleh
+
+
+AI Usage Log Entry 4
+Task ID/Title:
+Add AuthContext, Protected Route and Logout
+Purpose of AI Use:
+Code generation. AI was used to implement shared authentication state so the login page,
+ProtectedRoute and Navbar all use one source of truth for the logged-in user.
+
+Prompt: "Now let's do AuthContext so ProtectedRoute and the navbar know who is logged in, and add
+logout."
+AI Response: The AI generated an AuthProvider (stores the token and user, persists them in
+localStorage so a refresh keeps the session), a useAuth hook, and updates to App.tsx, ProtectedRoute
+and Navbar (email, Dashboard and Logout when logged in). It split the context into separate files to
+satisfy the project's ESLint react-refresh rule.
+AI-Suggested Content:
+• src/context/AuthContext.tsx, authState.ts and useAuth.ts.
+• App wrapped in AuthProvider; ProtectedRoute and Navbar read useAuth().
+• LoginPage calls login(token, user) instead of writing to localStorage directly.
+Validation:
+Tested in the browser: /dashboard redirects to /login when logged out, login shows my email and
+Logout in the navbar, refreshing keeps me logged in, and Logout returns to /login and locks the
+dashboard. npm run build passed.
+Decision:
+Modified before use. Comments were rewritten without metaphors. I informed Krish because the
+change touches his Navbar, ProtectedRoute and App files.
+Reflection:
+I now understand why a Context is better than every component reading localStorage on its own: logout
+and future changes to token storage happen in one place. Storing the token in localStorage is a
+decision the team should still review for security.
+Responsible Person:
+Dany Abou Saleh
