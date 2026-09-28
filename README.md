@@ -52,13 +52,12 @@ A web-based platform that allows job seekers and recruiters to connect. The Syst
 - In the root directory of the project, create a new file named exactly ".env" . Add your database connection link to the file by simply copy-pasting it in.
 
 ## Run Steps:
- - We'll require two terminals to run the website. First on the terminal we run the Backend server:
+ - We'll require two terminals to run the website. Firstly, on the first terminal we run the Backend server then on the second terminal we run the front-end:
    ```bash
     uvicorn App.main:app --reload
   ```
 
- - For the Front-End run:
-  ```bash
+   ```bash
     npm install
     npm run dev
-    ```
+  ```
