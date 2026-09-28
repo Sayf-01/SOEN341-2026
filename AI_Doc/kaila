@@ -1,1 +1,35 @@
+Part 1: uvloop install error
 
+Kaila: I created a virtual environment, but the command to create it fails because Python isn't found. How do I fix that?
+
+Claude: Windows is redirecting the python3 command to a Microsoft Store stub. Python 3.13.1 is already installed, so the py launcher can be used instead to create and activate the virtual environment. If PowerShell blocks the activation script, the execution policy can be relaxed for the current session only.
+
+Kaila: The venv is active, but installing the requirements fails. Here is the output.
+
+Claude: The cause is in the traceback: uvloop does not support Windows. It is a Unix-only performance add-on for asyncio. The app doesn't depend on it, because uvicorn uses the default event loop when it's missing.
+
+Kaila: How can I skip it without breaking the file for teammates on Mac or Linux?
+
+Claude: Add a platform marker to the uvloop line in the requirements file so it is skipped on Windows only. Other systems still install it as before.
+
+Kaila: How do I submit this as a pull request?
+
+Claude: Create a new branch, commit the change, push the branch to GitHub, and open the pull request from the link GitHub provides or from the "Compare & pull request" banner on the repo page.
+
+Result: Dependencies installed on Windows. The fix was pushed on its own branch and submitted as a pull request.
+
+Part 2: Adding the role column
+
+Kaila: The frontend registration form sends a full name, email, password, and role (Job Seeker or Recruiter). I only handle the database side. What do I need to add?
+
+Claude: Add a role column to the User model. Use an enum so only the two valid values can be stored, and match the frontend's exact strings (JOB_SEEKER and RECRUITER), with Job Seeker as the default.
+
+Kaila: How can I test this locally?
+
+Claude: Set up a local PostgreSQL instance for testing, with the connection string kept in a .env file that stays out of git. A fresh database creates the users table with the new column included.
+
+Kaila: Can I submit the model change without running the database?
+
+Claude: Yes. The model edit is a plain code change, so it can be committed and reviewed on its own branch. The local database is only needed to test it.
+
+Result: The role column and enum were added to the User model, with values matching the frontend JSON. The registration route and schemas are handled by other team members.
