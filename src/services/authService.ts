@@ -63,7 +63,7 @@ export const authService = {
     };
 
     const response = await api.post<RegisterResponse>(
-      "/api/auth/register",
+      "/api/v1/auth/register",
       backendPayload
     );
 
@@ -80,7 +80,7 @@ export const authService = {
       return mockLogin(payload);
     }
 
-    const response = await api.post<LoginResponse>("/api/auth/login", payload);
+    const response = await api.post<LoginResponse>("/api/v1/auth/login", payload);
     return response.data;
   },
 };
