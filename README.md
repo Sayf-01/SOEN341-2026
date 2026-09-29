@@ -29,18 +29,31 @@ jobs and follow applicants.
 CareerNet puts everything in one place. Job seekers manage their profile and
 resumes, apply to jobs, and track each application's status. Recruiters post
 jobs and review applicants.
-
 ## Features
-- User registration, login, and profile management
-- Resume / cover letter upload and management
-- Job posting management (recruiters)
-- Job search and filtering
-- Job application submission and status tracking
-  (Applied, Interview, Offered, Rejected)
-- Application history dashboard
-- Saved jobs
-- Generative AI feature: <your team's choice>
-- Additional original feature: <your team's choice>
+
+**Job seekers**
+- Account registration (#5)
+- Login (#6)
+- Resume upload and update (#16)
+- Application status tracking: Applied, Interview, Offered, Rejected (#17)
+- Notifications for job postings and deadlines (#18)
+- Applications dashboard (#19)
+- AI-generated resume feedback (#20)
+- Career goal and CV-based job matching (#26)
+- Job search and filtering (#27)
+- Save jobs to favourites (#28)
+
+**Recruiters**
+- Create job postings (#21)
+- Edit or close job postings (#22)
+- View applicants for a posting (#23)
+- Update applicant status (#24)
+- Search and filter candidates (#25)
+
+Sprint 1 demo: registration and login.
+
+## Repository
+https://github.com/Sayf-01/SOEN341-2026
 
 ## Set up
 **Step 1: clone and pull the latest code**
