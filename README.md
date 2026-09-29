@@ -19,6 +19,29 @@ A web-based platform that allows job seekers and recruiters to connect. The Syst
 - **Krish** - Frontend Developer
 - **Kaila** - Database Backend
 
+## Problem
+Job seekers keep their resumes, applications, and deadlines scattered across
+emails, spreadsheets, and job sites, which makes it easy to lose track of
+where each application stands. Recruiters also lack a simple place to post
+jobs and follow applicants.
+
+## Solution
+CareerNet puts everything in one place. Job seekers manage their profile and
+resumes, apply to jobs, and track each application's status. Recruiters post
+jobs and review applicants.
+
+## Features
+- User registration, login, and profile management
+- Resume / cover letter upload and management
+- Job posting management (recruiters)
+- Job search and filtering
+- Job application submission and status tracking
+  (Applied, Interview, Offered, Rejected)
+- Application history dashboard
+- Saved jobs
+- Generative AI feature: <your team's choice>
+- Additional original feature: <your team's choice>
+
 ## Set up
 **Step 1: clone and pull the latest code**
 - Ensure you're on the Main branch by running this on the terminal and have the latest update by running:
@@ -47,9 +70,16 @@ A web-based platform that allows job seekers and recruiters to connect. The Syst
   pip install -r requirements.txt
   ```
 
-**Step 5: Connecting to the database**
+**Step 5: Environment variables**
 
-- In the root directory of the project, create a new file named exactly ".env" . Add your database connection link to the file by simply copy-pasting it in.
+In the root folder, create a file named exactly ".env" with:
+
+- DATABASE_URL=your-database-link
+JWT_SECRET_KEY=any-long-random-string (generate with:
+python -c "import secrets; print(secrets.token_hex(32))")
+CORS_ORIGINS=http://localhost:5173
+
+Never commit this file. Each teammate creates their own.
 
 ## Run Steps:
  - We'll require two terminals to run the website.
@@ -63,3 +93,6 @@ A web-based platform that allows job seekers and recruiters to connect. The Syst
     npm install
     npm run dev
   ```
+
+## Repository
+https://github.com/Sayf-01/SOEN341-2026
