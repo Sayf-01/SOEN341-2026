@@ -2,6 +2,7 @@ import os
 
 # Use a throwaway in-memory database for tests. Must be set BEFORE importing the app.
 os.environ["DATABASE_URL"] = "sqlite://"
+os.environ["JWT_SECRET_KEY"] = "test-secret-key-for-unit-tests-123456"
 
 import pytest
 from fastapi.testclient import TestClient

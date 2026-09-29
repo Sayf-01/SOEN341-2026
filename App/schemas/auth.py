@@ -34,3 +34,19 @@ class UserOut(BaseModel):
 class RegisterResponse(BaseModel):
     message: str
     user: UserOut
+
+# ---------- Login (Youssef) ----------
+
+class LoginRequest(BaseModel):
+    """What the frontend sends to POST /auth/login."""
+
+    email: EmailStr
+    password: str
+
+
+class LoginResponse(BaseModel):
+    """What the backend returns after a successful login."""
+
+    access_token: str
+    token_type: str = "bearer"
+    user: UserOut
