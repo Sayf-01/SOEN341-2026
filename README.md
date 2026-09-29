@@ -51,9 +51,6 @@ jobs and review applicants.
 - Search and filter candidates (#25)
 
 
-## Repository
-https://github.com/Sayf-01/SOEN341-2026
-
 ## Set up
 **Step 1: clone and pull the latest code**
 - Ensure you're on the Main branch by running this on the terminal and have the latest update by running:
