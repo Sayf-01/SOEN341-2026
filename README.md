@@ -50,7 +50,6 @@ jobs and review applicants.
 - Update applicant status (#24)
 - Search and filter candidates (#25)
 
-Sprint 1 demo: registration and login.
 
 ## Repository
 https://github.com/Sayf-01/SOEN341-2026
