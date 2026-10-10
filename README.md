@@ -5,12 +5,13 @@ A web-based platform that allows job seekers and recruiters to connect. The Syst
 
 - **Front end:** React, CSS, HTML, TypeScript
 - **Back end:** Python, FastAPI
-- **Database:** PostgreSQL
-- **Database tools:** SQLAlchemy (ORM), Alembic (migrations)
+- **Database:** PostgreSQL (Neon Cloud)
+- **Database tools:** SQLAlchemy (ORM), Alembic (migrations), SQLite (In-Memory Testing)
 - **Testing frameworks:** 
   - **Vitest:** Frontend unit and configuration testing
   - **Pytest:** Backend integration and API testing (isolated via an in-memory SQLite database)
 - **Version Control:** GitHub
+- **CI/CD & DevOps:** GitHub Actions (Automated Pipelines)
 
 ## Team
 
