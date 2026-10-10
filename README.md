@@ -7,6 +7,9 @@ A web-based platform that allows job seekers and recruiters to connect. The Syst
 - **Back end:** Python, FastAPI
 - **Database:** PostgreSQL
 - **Database tools:** SQLAlchemy (ORM), Alembic (migrations)
+- **Testing frameworks:** 
+  - **Vitest:** Frontend unit and configuration testing
+  - **Pytest:** Backend integration and API testing (isolated via an in-memory SQLite database)
 - **Version Control:** GitHub
 
 ## Team
