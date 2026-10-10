@@ -102,5 +102,15 @@ Never commit this file. Each teammate creates their own.
     npm run dev
   ```
 
+## Running Tests
+
+Before submitting code, ensure that all automated tests pass. Both test suites run locally against isolated environments and will not affect the production database.
+
+Run both frontend and backend tests from the repository root:
+```bash
+npm test && pytest
+```
+
+
 ## Repository
 https://github.com/Sayf-01/SOEN341-2026
