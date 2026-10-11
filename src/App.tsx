@@ -11,12 +11,11 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 
-// DA-1: Job Listing Page
 import JobsPage from "./pages/JobsPage";
 import JobDetailPage from "./pages/JobDetailPage";
-
-// DA-4: My Applications Page
 import MyApplicationsPage from "./pages/MyApplicationsPage";
+
+import RecruiterDashboardPage from "./pages/RecruiterDashboardPage";
 
 function App() {
   return (
@@ -25,20 +24,11 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route
-            path="/"
-            element={<LandingPage />}
-          />
+          <Route path="/" element={<LandingPage />} />
 
-          <Route
-            path="/register"
-            element={<RegisterPage />}
-          />
+          <Route path="/register" element={<RegisterPage />} />
 
-          <Route
-            path="/login"
-            element={<LoginPage />}
-          />
+          <Route path="/login" element={<LoginPage />} />
 
           <Route
             path="/dashboard"
@@ -58,7 +48,7 @@ function App() {
             }
           />
 
-          {/* DA-1: Job Listing */}
+          {/* DA-1 and DA-2: Job Listing, Search, and Filters */}
           <Route
             path="/jobs"
             element={
@@ -68,26 +58,35 @@ function App() {
             }
           />
 
+          {/* DA-3: Job Detail */}
+          <Route
+            path="/jobs/:id"
+            element={
+              <ProtectedRoute>
+                <JobDetailPage />
+              </ProtectedRoute>
+            }
+          />
 
-{/* DA-3: Job Detail Page */}
-<Route
-  path="/jobs/:id"
-  element={
-    <ProtectedRoute>
-      <JobDetailPage />
-    </ProtectedRoute>
-  }
-/>
+          {/* DA-4: My Applications */}
+          <Route
+            path="/applications"
+            element={
+              <ProtectedRoute>
+                <MyApplicationsPage />
+              </ProtectedRoute>
+            }
+          />
 
-{/* DA-4: My Applications Page */}
-<Route
-  path="/applications"
-  element={
-    <ProtectedRoute>
-      <MyApplicationsPage />
-    </ProtectedRoute>
-  }
-/>
+          {/* KR-4: Recruiter Dashboard */}
+          <Route
+            path="/recruiter"
+            element={
+              <ProtectedRoute requiredRole="RECRUITER">
+                <RecruiterDashboardPage />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
