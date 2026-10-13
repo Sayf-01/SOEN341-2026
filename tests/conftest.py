@@ -38,21 +38,28 @@ def client():
     Base.metadata.drop_all(bind=engine)
 
 
-# ---------- Helpers shared by the test files ----------
+# ---------- Fixtures shared by the test files ----------
 
 API = "/api/v1"
 
+@pytest.fixture
+def registered_user(client):
+    """Fixture to register a clean test user and return their details."""
+    payload = {
+        "full_name": "Lamees Ibeid",
+        "email": "lamees@example.com",
+        "password": "Password123!",
+        "role": "JOB_SEEKER"
+    }
+    client.post(f"{API}/auth/register", json=payload)
+    return payload
 
-def register_user(client, email="lamees@example.com", role="JOB_SEEKER", password="Password123!"):
-    return client.post(
-        f"{API}/auth/register",
-        json={"full_name": "Lamees Ibeid", "email": email, "password": password, "role": role},
+@pytest.fixture
+def auth_headers(client, registered_user):
+    """Fixture that logs in the registered user and returns Bearer token headers."""
+    response = client.post(
+        f"{API}/auth/login", 
+        json={"email": registered_user["email"], "password": registered_user["password"]}
     )
-
-
-def login_headers(client, email="lamees@example.com", role="JOB_SEEKER", password="Password123!"):
-    register_user(client, email=email, role=role, password=password)
-    token = client.post(
-        f"{API}/auth/login", json={"email": email, "password": password}
-    ).json()["access_token"]
+    token = response.json()["access_token"]
     return {"Authorization": f"Bearer {token}"}
