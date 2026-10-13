@@ -5,9 +5,13 @@ A web-based platform that allows job seekers and recruiters to connect. The Syst
 
 - **Front end:** React, CSS, HTML, TypeScript
 - **Back end:** Python, FastAPI
-- **Database:** PostgreSQL
-- **Database tools:** SQLAlchemy (ORM), Alembic (migrations)
+- **Database:** PostgreSQL (Neon Cloud)
+- **Database tools:** SQLAlchemy (ORM), Alembic (migrations), SQLite (In-Memory Testing)
+- **Testing frameworks:** 
+  - **Vitest:** Frontend unit and configuration testing
+  - **Pytest:** Backend integration and API testing (isolated via an in-memory SQLite database)
 - **Version Control:** GitHub
+- **CI/CD & DevOps:** GitHub Actions (Automated Pipelines)
 
 ## Team
 
@@ -101,6 +105,16 @@ Never commit this file. Each teammate creates their own.
     npm install
     npm run dev
   ```
+
+## Running Tests
+
+Before submitting code, ensure that all automated tests pass. Both test suites run locally against isolated environments and will not affect the production database.
+
+Run both frontend and backend tests from the repository root:
+```bash
+npm test && pytest
+```
+
 
 ## Repository
 https://github.com/Sayf-01/SOEN341-2026
