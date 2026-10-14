@@ -7,6 +7,7 @@ import DashboardPage from "./pages/DashboardPage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -25,7 +26,15 @@ function App() {
                 <DashboardPage />
               </ProtectedRoute>
             }
+          /><Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
           />
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>
