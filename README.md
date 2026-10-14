@@ -93,6 +93,16 @@ CORS_ORIGINS=http://localhost:5173
 
 Never commit this file. Each teammate creates their own.
 
+Step 6: Load sample jobs (optional)
+
+* To fill the database with 18 sample job postings for testing search and applications, run this from the root folder:
+
+```
+python -m scripts.seed_jobs
+```
+
+* It's safe to run more than once: jobs that already exist are skipped, so nothing is duplicated.
+
 ## Run Steps:
  - We'll require two terminals to run the website.
 

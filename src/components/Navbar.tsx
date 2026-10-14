@@ -25,6 +25,9 @@ function Navbar() {
           <>
             {user && <span style={{ color: "#8b949e" }}>{user.email}</span>}
             <Link to="/dashboard" style={linkStyle}>Dashboard</Link>
+            <Link to="/profile" style={linkStyle}>
+              My Profile
+            </Link>
             <button
               type="button"
               onClick={handleLogout}
