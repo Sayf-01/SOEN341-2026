@@ -28,6 +28,9 @@ function Navbar() {
             <Link to="/profile" style={linkStyle}>
               My Profile
             </Link>
+            <Link to="/applications" style={linkStyle}>
+              My Applications
+            </Link>
             <button
               type="button"
               onClick={handleLogout}
