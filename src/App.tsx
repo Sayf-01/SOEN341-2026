@@ -13,6 +13,7 @@ import ProfilePage from "./pages/ProfilePage";
 
 // DA-1: Job Listing Page
 import JobsPage from "./pages/JobsPage";
+import JobDetailPage from "./pages/JobDetailPage";
 
 // DA-4: My Applications Page
 import MyApplicationsPage from "./pages/MyApplicationsPage";
@@ -67,15 +68,26 @@ function App() {
             }
           />
 
-          {/* DA-4: My Applications */}
-          <Route
-            path="/applications"
-            element={
-              <ProtectedRoute>
-                <MyApplicationsPage />
-              </ProtectedRoute>
-            }
-          />
+
+{/* DA-3: Job Detail Page */}
+<Route
+  path="/jobs/:id"
+  element={
+    <ProtectedRoute>
+      <JobDetailPage />
+    </ProtectedRoute>
+  }
+/>
+
+{/* DA-4: My Applications Page */}
+<Route
+  path="/applications"
+  element={
+    <ProtectedRoute>
+      <MyApplicationsPage />
+    </ProtectedRoute>
+  }
+/>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
