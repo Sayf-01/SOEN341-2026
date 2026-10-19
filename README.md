@@ -93,6 +93,23 @@ CORS_ORIGINS=http://localhost:5173
 
 Never commit this file. Each teammate creates their own.
 
+
+### Frontend API configuration
+
+The frontend uses `VITE_API_BASE_URL` to connect to the backend.
+
+For local development, you can add this to your `.env` file:
+
+```env
+VITE_API_BASE_URL=http://localhost:8000
+```
+
+If this variable is not provided, the frontend defaults to
+`http://localhost:8000`.
+
+The shared API helper automatically adds the `/api/v1` prefix
+and includes the saved login token when available.
+
 Step 6: Load sample jobs (optional)
 
 * To fill the database with 18 sample job postings for testing search and applications, run this from the root folder:
