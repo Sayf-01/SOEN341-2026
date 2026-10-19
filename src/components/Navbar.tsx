@@ -28,6 +28,9 @@ function Navbar() {
             <Link to="/profile" style={linkStyle}>
               My Profile
             </Link>
+            <Link to="/jobs" style={linkStyle}>
+              Find Jobs
+            </Link>
             <button
               type="button"
               onClick={handleLogout}
