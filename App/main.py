@@ -34,10 +34,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     message = first_error["msg"].removeprefix("Value error, ")
 
     # Sprint 1 registration tests require HTTP 400.
-    if request.url.path == "/api/v1/auth/register":
-        status_code = 400
-    else:
-        status_code = 422
+    status_code = 400
 
     return JSONResponse(
         status_code=status_code,
