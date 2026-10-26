@@ -7,7 +7,7 @@ import App.models  # noqa: F401  (registers all tables)
 from App.core import config
 from App.database.base import Base
 from App.database.connection import engine
-from App.routers import auth, profile, resumes, applications
+from App.routers import auth, profile, resumes, applications, jobs, recruiter
 
 # TEMPORARY: creates missing tables on startup. Remove once Sayf/Kaila's Alembic migration exists.
 Base.metadata.create_all(bind=engine)
@@ -24,13 +24,22 @@ app.add_middleware(
 )
 
 
+
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
-    """Return 400 with ONE readable string, instead of FastAPI's default 422 + list."""
+    """Preserve Sprint 1 registration errors while supporting Sprint 2 validation."""
+
     first_error = exc.errors()[0]
     field = str(first_error["loc"][-1])
     message = first_error["msg"].removeprefix("Value error, ")
-    return JSONResponse(status_code=400, content={"detail": f"{field}: {message}"})
+
+    # Sprint 1 registration tests require HTTP 400.
+    status_code = 400
+
+    return JSONResponse(
+        status_code=status_code,
+        content={"detail": f"{field}: {message}"},
+    )
 
 
 @app.exception_handler(Exception)
@@ -46,3 +55,5 @@ app.include_router(auth.router, prefix="/api/v1")
 app.include_router(profile.router, prefix="/api/v1")
 app.include_router(resumes.router, prefix="/api/v1")
 app.include_router(applications.router, prefix="/api/v1")
+app.include_router(jobs.router, prefix="/api/v1")
+app.include_router(recruiter.router, prefix="/api/v1")
