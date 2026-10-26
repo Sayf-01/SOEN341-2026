@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class ApplicationCreate(BaseModel):
@@ -8,6 +8,7 @@ class ApplicationCreate(BaseModel):
 
     job_id: int
     resume_id: int
+    cover_note: str | None = Field(default=None, max_length=1000)  # optional message to the recruiter
 
 
 class ApplicationCreated(BaseModel):
