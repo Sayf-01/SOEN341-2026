@@ -7,7 +7,7 @@ import App.models  # noqa: F401  (registers all tables)
 from App.core import config
 from App.database.base import Base
 from App.database.connection import engine
-from App.routers import auth, profile
+from App.routers import auth, profile, resumes, applications
 
 # TEMPORARY: creates missing tables on startup. Remove once Sayf/Kaila's Alembic migration exists.
 Base.metadata.create_all(bind=engine)
@@ -44,3 +44,5 @@ def health():
 
 app.include_router(auth.router, prefix="/api/v1")
 app.include_router(profile.router, prefix="/api/v1")
+app.include_router(resumes.router, prefix="/api/v1")
+app.include_router(applications.router, prefix="/api/v1")
