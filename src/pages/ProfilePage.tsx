@@ -6,6 +6,7 @@ import FormField from "../components/FormField";
 import Alert from "../components/Alert";
 import { getProfile, saveProfile } from "../api/profile";
 import type { Profile } from "../types/profile";
+import ResumeSection from "../components/ResumeSection";
 
 // Empty values when the user has not created a profile yet.
 const emptyProfile: Profile = {
@@ -255,6 +256,10 @@ function ProfilePage() {
             </div>
           </div>
         )}
+
+        {/* KR-2: Resume management */}
+        <ResumeSection />
+
       </section>
     </main>
   );
