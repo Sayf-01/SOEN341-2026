@@ -114,7 +114,7 @@ def test_recruiter_sees_applicants_for_own_job(client):
     assert len(applications) == 1
     # no profile yet, so the name falls back to the email
     assert applications[0]["applicant_name"] == "seeker@example.com"
-    assert applications[0]["status"] == "submitted"
+    assert applications[0]["status"] == "Applied"
 
 
 def test_job_with_no_applications_returns_empty_list(client):
