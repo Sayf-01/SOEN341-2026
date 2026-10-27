@@ -1,5 +1,6 @@
 
 import { mockJobs } from "../mocks/jobs";
+import { ALL_FILTER_VALUE } from "../constants/jobFilters";
 
 import type {
   Job,
@@ -16,11 +17,11 @@ const mockDelay = (ms: number) =>
   new Promise<void>((resolve) => setTimeout(resolve, ms));
 
 /**
- * Get a paginated list of jobs.
+ * Get jobs with optional search filters and pagination.
  *
- * DA-1: Mock listing and pagination.
- * DA-2: Add keyword, location and category filtering.
- * DA-5: Replace mock implementation with the real backend.
+ * DA-1: Job listing with pagination.
+ * DA-2: Keyword, location and category filtering.
+ * DA-5: Replace mock logic with real backend requests.
  */
 export async function searchJobs(
   params: JobSearchParams = {}
@@ -34,19 +35,54 @@ export async function searchJobs(
       ? requestedPage
       : 1;
 
-  // DA-2 will apply the search filters here.
-  const filteredJobs = [...mockJobs];
+  // Normalize the keyword to make searching case-insensitive.
+  const keyword = (params.keyword ?? "")
+    .trim()
+    .toLowerCase();
 
-  // Number of jobs before pagination.
+  const location = params.location ?? ALL_FILTER_VALUE;
+  const category = params.category ?? ALL_FILTER_VALUE;
+
+  // Apply all active filters together.
+  const filteredJobs = mockJobs.filter((job) => {
+    // Keyword can match title, company or description.
+    const matchesKeyword =
+      keyword === "" ||
+      job.title.toLowerCase().includes(keyword) ||
+      job.company.toLowerCase().includes(keyword) ||
+      job.description.toLowerCase().includes(keyword);
+
+    // Empty location means "All Locations".
+    const matchesLocation =
+      location === ALL_FILTER_VALUE ||
+      job.location === location;
+
+    // Empty category means "All Categories".
+    const matchesCategory =
+      category === ALL_FILTER_VALUE ||
+      job.category === category;
+
+    // A job must satisfy every active filter.
+    return (
+      matchesKeyword &&
+      matchesLocation &&
+      matchesCategory
+    );
+  });
+
+  // Total matching jobs BEFORE pagination.
   const total = filteredJobs.length;
 
-  // Calculate the jobs for the requested page.
+  // Apply pagination AFTER filtering.
   const startIndex = (page - 1) * JOBS_PER_PAGE;
   const endIndex = startIndex + JOBS_PER_PAGE;
 
-  const pageJobs = filteredJobs.slice(startIndex, endIndex);
+  const pageJobs = filteredJobs.slice(
+    startIndex,
+    endIndex
+  );
 
-  // Return only the fields required by the listing.
+  // Return only the fields needed by the job cards.
   const items: Job[] = pageJobs.map((job) => ({
     id: job.id,
     title: job.title,
@@ -63,9 +99,8 @@ export async function searchJobs(
 }
 
 /**
- * Get the full details of one job.
- *
- * Returns null when the job does not exist.
+ * Get full details of a single job.
+ * Returns null if the job doesn't exist.
  */
 export async function getJob(
   id: number
