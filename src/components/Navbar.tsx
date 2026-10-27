@@ -62,7 +62,7 @@ function Navbar() {
               My Profile
             </Link>
 
-            {/* DA-1: Job Listing */}
+            {/* DA-1 and DA-2: Job Listing and Search */}
             <Link to="/jobs" style={linkStyle}>
               Find Jobs
             </Link>
@@ -71,6 +71,13 @@ function Navbar() {
             <Link to="/applications" style={linkStyle}>
               My Applications
             </Link>
+
+            {/* KR-4: Visible only to recruiters */}
+            {user?.role === "RECRUITER" && (
+              <Link to="/recruiter" style={linkStyle}>
+                Recruiter Dashboard
+              </Link>
+            )}
 
             <button
               type="button"
