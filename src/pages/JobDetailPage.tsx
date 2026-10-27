@@ -5,6 +5,8 @@ import { Link, useParams } from "react-router-dom";
 import { getJob } from "../api/jobs";
 import type { JobDetail } from "../types/job";
 
+import ApplyDialog from "../components/ApplyDialog";
+
 function JobDetailPage() {
   // Read the job ID from the URL: /jobs/:id
   const { id } = useParams<{ id: string }>();
@@ -239,12 +241,12 @@ function JobDetailPage() {
                 after KR-3 is integrated.
               </p>
 
-              {/* DA-3 integration point:
-                  <ApplyDialog
-                    jobId={job.id}
-                    jobTitle={job.title}
-                  />
-              */}
+              <div style={{ marginTop: "16px" }}>
+                <ApplyDialog
+                  jobId={job.id}
+                  jobTitle={job.title}
+                />
+              </div>
             </div>
           )}
         </div>
