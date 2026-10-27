@@ -54,6 +54,7 @@ def apply_for_job(
         resume_id=data.resume_id,
         status=APPLIED,
         applied_at=datetime.now(timezone.utc),
+         cover_note=data.cover_note,
     )
     db.add(application)
     try:
