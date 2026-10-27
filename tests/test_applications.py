@@ -87,3 +87,39 @@ def test_recruiter_cannot_apply_403(client):
 def test_apply_needs_login(client):
     # No token -> 401.
     assert client.post(f"{API}/applications", json={"job_id": 1, "resume_id": 1}).status_code == 401
+
+
+def saved_cover_note(application_id):
+    # Reads the cover note straight from the test database.
+    from App.models.application import Application
+    db = next(app.dependency_overrides[get_db]())
+    note = db.get(Application, application_id).cover_note
+    db.close()
+    return note
+
+
+def test_cover_note_is_saved(client, auth_headers):
+    # An optional cover note is saved with the application.
+    resume_id = upload(client, auth_headers).json()["id"]
+    response = client.post(f"{API}/applications",
+                           json={"job_id": make_job(), "resume_id": resume_id, "cover_note": "I love backend work."},
+                           headers=auth_headers)
+    assert response.status_code == 201
+    assert saved_cover_note(response.json()["id"]) == "I love backend work."
+
+
+def test_cover_note_is_optional(client, auth_headers):
+    # Applying without a cover note still works, and nothing is saved for it.
+    resume_id = upload(client, auth_headers).json()["id"]
+    response = apply(client, auth_headers, make_job(), resume_id)
+    assert response.status_code == 201
+    assert saved_cover_note(response.json()["id"]) is None
+
+
+def test_cover_note_over_1000_characters_is_rejected(client, auth_headers):
+    # A cover note longer than 1000 characters is invalid.
+    resume_id = upload(client, auth_headers).json()["id"]
+    response = client.post(f"{API}/applications",
+                           json={"job_id": make_job(), "resume_id": resume_id, "cover_note": "a" * 1001},
+                           headers=auth_headers)
+    assert response.status_code in (400, 422)
