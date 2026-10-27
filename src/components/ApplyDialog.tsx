@@ -62,9 +62,6 @@ function ApplyDialog({ jobId, jobTitle }: ApplyDialogProps) {
 
     let active = true;
 
-    setIsLoading(true);
-    setError("");
-
     getResumes()
       .then((data) => {
         if (!active) return;
@@ -101,14 +98,17 @@ function ApplyDialog({ jobId, jobTitle }: ApplyDialogProps) {
     }
   }, [isOpen, isLoading, isSubmitted, resumes.length]);
 
-  const openDialog = () => {
-    setIsSubmitted(false);
-    setCoverNote("");
-    setSelectedResumeId("");
-    setResumes([]);
-    setError("");
-    setIsOpen(true);
-  };
+  
+const openDialog = () => {
+  setIsSubmitted(false);
+  setCoverNote("");
+  setSelectedResumeId("");
+  setResumes([]);
+  setError("");
+  setIsLoading(true);
+  setIsOpen(true);
+};
+
 
   const closeDialog = () => {
     if (!isSubmitting) {
